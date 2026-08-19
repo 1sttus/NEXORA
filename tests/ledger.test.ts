@@ -24,6 +24,39 @@ describe("ledger engine", () => {
     expect(applyLedgerEntry(1250, withdrawal)).toBe(1150);
   });
 
+  it("supports bank and wallet withdrawal destinations", () => {
+    const bankWithdrawal = createLedgerEntry({
+      accountId: "acct_1",
+      amount: 250,
+      type: "withdrawal",
+      description: "Bank transfer payout",
+      destination: {
+        method: "bank",
+        bankName: "Citi",
+        accountHolder: "NEXORA User",
+        iban: "US123456789",
+      },
+    });
+
+    const walletWithdrawal = createLedgerEntry({
+      accountId: "acct_1",
+      amount: 75,
+      type: "withdrawal",
+      description: "Crypto wallet payout",
+      destination: {
+        method: "wallet",
+        network: "ethereum",
+        walletAddress: "0xabc123",
+      },
+    });
+
+    expect(bankWithdrawal.amount).toBe(-250);
+    expect(bankWithdrawal.destination?.method).toBe("bank");
+    expect(walletWithdrawal.amount).toBe(-75);
+    expect(walletWithdrawal.destination?.method).toBe("wallet");
+    expect(walletWithdrawal.destination?.network).toBe("ethereum");
+  });
+
   it("rejects invalid ledger entries", () => {
     expect(() =>
       createLedgerEntry({
