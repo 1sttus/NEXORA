@@ -1,125 +1,160 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, ShieldCheck, TrendingUp, Wallet2 } from "lucide-react";
+import { ArrowRight, BarChart3, Bell, ChevronRight, ShieldCheck, Sparkles, TrendingUp, Wallet2 } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { formatCompactCurrency, formatCurrency } from "@/lib/finance";
 
 const marketTicker = [
   { symbol: "BTC/USD", value: "$68,420.12", delta: "+2.84%" },
   { symbol: "ETH/USD", value: "$3,810.56", delta: "+1.67%" },
-  { symbol: "EUR/USD", value: "1.0912", delta: "+0.18%" },
+  { symbol: "SOL/USD", value: "$164.90", delta: "+4.12%" },
   { symbol: "XAU/USD", value: "$2,426.70", delta: "+0.74%" },
-  { symbol: "S&P 500", value: "5,482.13", delta: "+0.63%" },
+  { symbol: "SPX", value: "5,482.13", delta: "+0.63%" },
 ];
 
-const metrics = [
-  { label: "Deposited", value: formatCurrency(138540), delta: "+12.4%" },
-  { label: "Withdrawn", value: formatCurrency(73240), delta: "+4.8%" },
-  { label: "Profit", value: formatCurrency(40520), delta: "+8.1%" },
-  { label: "Signal Fee", value: formatCurrency(2140), delta: "-0.6%" },
+const statCards = [
+  { label: "Portfolio value", value: "$34,010.00", change: "+2.25%" },
+  { label: "24h P&L", value: "+$1,810.05", change: "+4.8%" },
+  { label: "Staked", value: "$12,500.00", change: "+1.2%" },
 ];
 
-const platformHighlights = [
+const watchlist = [
+  { name: "Bitcoin", symbol: "BTC", price: "$68,420.12", change: "+2.84%" },
+  { name: "Ethereum", symbol: "ETH", price: "$3,810.56", change: "+1.67%" },
+  { name: "Solana", symbol: "SOL", price: "$164.90", change: "+4.12%" },
+  { name: "XRP", symbol: "XRP", price: "$0.62", change: "+1.20%" },
+];
+
+const features = [
   {
     icon: Wallet2,
-    title: "Capital visibility",
-    description: "Monitor deposits, portfolio movement, and net performance from a single premium command surface.",
+    title: "Portfolio controls",
+    description: "Track balances, performance, and withdrawals with account-level clarity and protected flows.",
   },
   {
     icon: TrendingUp,
-    title: "Actionable market data",
-    description: "Track live prices, watchlists, and chart performance with readable context for each asset class.",
+    title: "Market intelligence",
+    description: "See live pricing, rankings, and trend context without noisy or distracting clutter.",
   },
   {
     icon: ShieldCheck,
-    title: "Security-first operations",
-    description: "Server-side validation, audit logging, and strict permission checks protect financial records.",
+    title: "Secure by design",
+    description: "Every transaction is validated server-side and kept auditable with a ledger-first approach.",
   },
   {
     icon: BarChart3,
-    title: "Signal intelligence",
-    description: "Stay aligned with trusted signals, clear positions, and disciplined execution frameworks.",
+    title: "Signal-ready execution",
+    description: "Surface positions, entries, and execution windows in one clean decision workspace.",
   },
 ];
 
-const marketRows = [
-  { name: "Bitcoin", symbol: "BTC", price: "$68,420.12", change: "+2.84%", volume: "$31.2T" },
-  { name: "Ethereum", symbol: "ETH", price: "$3,810.56", change: "+1.67%", volume: "$18.6T" },
-  { name: "Solana", symbol: "SOL", price: "$164.90", change: "+4.12%", volume: "$7.4T" },
-  { name: "XRP", symbol: "XRP", price: "$0.62", change: "+1.20%", volume: "$2.7T" },
+const performanceBars = [
+  { label: "BTC", value: 82 },
+  { label: "ETH", value: 62 },
+  { label: "SOL", value: 51 },
+  { label: "XAU", value: 39 },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0B0D10] text-[#F5F4EF]">
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md border border-[#2B3138] bg-[#12181D] text-lg font-semibold text-[#C9A96A]">
-            N
-          </div>
-          <div className="text-[10px] uppercase tracking-[0.35em] text-[#A5ABB4]">NEXORA</div>
-        </div>
-
-        <nav className="hidden items-center gap-8 text-sm text-[#D9D7D1] md:flex">
-          <Link href="#markets">Markets</Link>
-          <Link href="#signals">Signals</Link>
-          <Link href="#platform">Platform</Link>
-          <Link href="#security">Security</Link>
-          <Link href="#pricing">Pricing</Link>
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <Link href="#login" className="hidden rounded-full border border-[#3A4047] px-4 py-2 text-sm text-[#F5F4EF] md:inline-flex">
-            Sign in
-          </Link>
-          <Link href="#register" className="inline-flex rounded-full bg-[#C9A96A] px-4 py-2 text-sm font-medium text-[#11161B] transition hover:bg-[#d9b982]">
-            Explore platform
-          </Link>
-        </div>
-      </header>
-
-      <main>
-        <section className="border-y border-[#1B2126] bg-[radial-gradient(circle_at_top,_rgba(201,169,106,0.12),transparent_25%),linear-gradient(180deg,#0B0D10,#10161B)]">
-          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
-            <div className="mb-8 flex justify-center md:justify-start">
-              <Badge>Clarity for Every Market Move.</Badge>
-            </div>
-            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+    <main className="min-h-screen bg-[#070b0f] text-[#f5f4ef]">
+      <div className="mx-auto max-w-7xl px-5 py-6 lg:px-8">
+        <header className="rounded-[26px] border border-[#1d242a] bg-[#0d1418]/90 px-5 py-4 shadow-[0_24px_60px_rgba(0,0,0,0.28)] backdrop-blur-sm">
+          <div className="flex items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#2d3740] bg-[#111a1f] text-lg font-semibold text-[#d7b77c]">
+                N
+              </div>
               <div>
-                <h1 className="max-w-xl text-5xl font-medium tracking-[-0.06em] text-[#F5F4EF] md:text-6xl">
-                  Premium insight for disciplined digital asset decisions.
-                </h1>
-                <p className="mt-6 max-w-xl text-lg leading-8 text-[#A5ABB4]">
-                  NEXORA brings market visibility, portfolio context, and timely trading intelligence together in a calmer, more credible product experience.
-                </p>
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <Link href="#register" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#C9A96A] px-6 py-3 text-sm font-medium text-[#11161B] transition hover:bg-[#d9b982]">
-                    Explore the platform
-                    <ArrowRight size={16} />
-                  </Link>
-                  <Link href="#markets" className="inline-flex items-center justify-center rounded-full border border-[#3B4249] px-6 py-3 text-sm font-medium text-[#F5F4EF]">
-                    View markets
-                  </Link>
-                </div>
+                <div className="text-[10px] uppercase tracking-[0.35em] text-[#9aa4ad]">NEXORA</div>
+              </div>
+            </div>
+
+            <nav className="hidden items-center gap-7 text-sm text-[#d9d7d1] md:flex">
+              <Link href="#overview">Overview</Link>
+              <Link href="#markets">Markets</Link>
+              <Link href="#signals">Signals</Link>
+              <Link href="#security">Security</Link>
+            </nav>
+
+            <div className="flex items-center gap-3">
+              <Link href="/login" className="rounded-full border border-[#2f3940] bg-[#0f171b] px-4 py-2 text-sm font-medium text-[#f5f4ef] transition hover:border-[#4a535b]">
+                Sign in
+              </Link>
+              <Link href="/register" className="rounded-full bg-[#d7b77c] px-4 py-2 text-sm font-semibold text-[#12171b] transition hover:bg-[#e6c88a]">
+                Create account
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        <section className="mt-6 rounded-[30px] border border-[#1d242a] bg-[radial-gradient(circle_at_top,_rgba(215,183,124,0.18),transparent_22%),linear-gradient(180deg,#0b1217,#0d1418)] p-5 shadow-[0_30px_80px_rgba(3,6,7,0.42)] lg:p-8">
+          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#2b3740] bg-[#101a1f] px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-[#d7b77c]">
+                <Sparkles size={12} />
+                Clarity for every market move
               </div>
 
-              <div className="rounded-[28px] border border-[#242A32] bg-[#0F1418]/80 p-5 shadow-[0_30px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm">
-                <div className="mb-5 flex items-center justify-between border-b border-[#1D242A] pb-4">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-[#A5ABB4]">Market overview</p>
-                    <h2 className="mt-2 text-2xl font-medium text-[#F5F4EF]">Portfolio pulse</h2>
+              <h1 className="max-w-xl text-4xl font-medium tracking-[-0.07em] text-[#f5f4ef] md:text-6xl">
+                Trade smarter with a calmer, sharper view.
+              </h1>
+
+              <p className="mt-5 max-w-xl text-base leading-8 text-[#a7afb8] md:text-lg">
+                NEXORA brings together portfolio visibility, live market data, and disciplined signal intelligence in one premium trading workspace.
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link href="/register" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d7b77c] px-6 py-3 text-sm font-semibold text-[#12171b] transition hover:bg-[#e6c88a]">
+                  Get started
+                  <ArrowRight size={16} />
+                </Link>
+                <Link href="/login" className="inline-flex items-center justify-center rounded-full border border-[#303b43] bg-[#0f171b] px-6 py-3 text-sm font-medium text-[#f5f4ef] transition hover:border-[#4a535b]">
+                  Sign in
+                </Link>
+              </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {statCards.map((stat) => (
+                  <div key={stat.label} className="rounded-[22px] border border-[#1d242a] bg-[#0f171b] p-4">
+                    <div className="text-[10px] uppercase tracking-[0.2em] text-[#9aa4ad]">{stat.label}</div>
+                    <div className="mt-3 text-2xl font-medium text-[#f5f4ef]">{stat.value}</div>
+                    <div className="mt-1 text-sm text-[#71d99e]">{stat.change}</div>
                   </div>
-                  <Badge className="border-[#234349] bg-[#0E1C20] text-[#6ED8E6]">Live</Badge>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-[#1d242a] bg-[#0d1418] p-4 sm:p-5">
+              <div className="rounded-[22px] border border-[#1d242a] bg-[#101a1f] p-4">
+                <div className="flex items-center justify-between border-b border-[#1d242a] pb-4">
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.2em] text-[#9aa4ad]">Portfolio</div>
+                    <h2 className="mt-2 text-3xl font-medium text-[#f5f4ef]">$34,010.00</h2>
+                  </div>
+                  <div className="rounded-full border border-[#2d4135] bg-[#102118] px-2.5 py-1 text-xs font-medium text-[#71d99e]">+2.25%</div>
                 </div>
 
-                <div className="space-y-4">
-                  {metrics.map((item) => (
-                    <div key={item.label} className="flex items-center justify-between rounded-2xl border border-[#1A2228] bg-[#10161A] px-4 py-3">
-                      <div>
-                        <div className="text-[10px] uppercase tracking-[0.24em] text-[#A5ABB4]">{item.label}</div>
-                        <div className="mt-2 text-2xl font-medium text-[#F5F4EF]">{item.value}</div>
+                <div className="mt-5 flex gap-3">
+                  <button className="flex-1 rounded-full bg-[#d7b77c] px-4 py-3 text-sm font-semibold text-[#11171b]">Deposit</button>
+                  <button className="flex-1 rounded-full border border-[#2d3740] bg-[#0f171b] px-4 py-3 text-sm font-medium text-[#f5f4ef]">Withdraw</button>
+                </div>
+
+                <div className="mt-6 space-y-3">
+                  {watchlist.map((asset) => (
+                    <div key={asset.symbol} className="flex items-center justify-between rounded-2xl border border-[#1d242a] bg-[#0e1519] px-3 py-3">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#161f25] text-xs font-semibold text-[#d7b77c]">
+                          {asset.symbol.slice(0, 1)}
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-[#f5f4ef]">{asset.name}</div>
+                          <div className="text-[11px] uppercase tracking-[0.18em] text-[#9aa4ad]">{asset.symbol}</div>
+                        </div>
                       </div>
-                      <div className="text-sm font-medium text-[#6ED8E6]">{item.delta}</div>
+                      <div className="text-right">
+                        <div className="text-sm font-medium text-[#f5f4ef]">{asset.price}</div>
+                        <div className="text-xs text-[#71d99e]">{asset.change}</div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -128,172 +163,126 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="overflow-hidden border-b border-[#1B2126] bg-[#0B0D10]">
-          <div className="mx-auto flex max-w-7xl gap-8 overflow-x-auto whitespace-nowrap px-6 py-4 text-sm text-[#C7CBCF] lg:px-10">
-            {marketTicker.map((item) => (
-              <div key={item.symbol} className="flex shrink-0 items-center gap-3 border-l border-[#1C2127] pl-4 first:border-l-0 first:pl-0">
-                <span className="font-medium text-[#F5F4EF]">{item.symbol}</span>
-                <span>{item.value}</span>
-                <span className="text-[#71D99E]">{item.delta}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <section id="platform" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <div className="mb-10 max-w-2xl">
-            <Badge>Platform overview</Badge>
-            <h2 className="mt-6 text-4xl tracking-[-0.05em] text-[#F5F4EF]">Built for clarity, trust, and execution.</h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {platformHighlights.map(({ icon: Icon, title, description }) => (
-              <article key={title} className="rounded-[24px] border border-[#1D242A] bg-[#0F1518] p-6">
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-[#2A3137] bg-[#121A1E] text-[#C9A96A]">
-                  <Icon size={18} />
-                </div>
-                <h3 className="text-xl font-medium text-[#F5F4EF]">{title}</h3>
-                <p className="mt-4 text-base leading-7 text-[#A5ABB4]">{description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="markets" className="border-y border-[#1B2126] bg-[#0E1318]">
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-            <div className="mb-10 flex items-end justify-between gap-4">
+        <section id="overview" className="mt-8 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+          <div className="rounded-[28px] border border-[#1d242a] bg-[#0d1418] p-5">
+            <div className="mb-5 flex items-center justify-between">
               <div>
-                <Badge>Market intelligence</Badge>
-                <h2 className="mt-5 text-4xl tracking-[-0.05em] text-[#F5F4EF]">A disciplined view of the market.</h2>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#9aa4ad]">Market overview</div>
+                <h3 className="mt-2 text-2xl font-medium text-[#f5f4ef]">A cleaner market pulse</h3>
               </div>
-              <Link href="#markets" className="hidden text-sm text-[#C9A96A] md:inline-flex">
-                View all assets →
+              <Link href="/markets" className="inline-flex items-center gap-2 text-sm text-[#d7b77c]">
+                View all <ChevronRight size={16} />
               </Link>
             </div>
 
-            <div className="overflow-hidden rounded-[24px] border border-[#1D242A] bg-[#0C1115]">
-              <table className="min-w-full divide-y divide-[#192229] text-left">
-                <thead className="bg-[#10171C] text-[10px] uppercase tracking-[0.2em] text-[#A5ABB4]">
-                  <tr>
-                    <th className="px-6 py-4">Asset</th>
-                    <th className="px-6 py-4">Price</th>
-                    <th className="px-6 py-4">24h</th>
-                    <th className="px-6 py-4">Volume</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#192229] text-sm text-[#E8E4DE]">
-                  {marketRows.map((row) => (
-                    <tr key={row.symbol} className="hover:bg-[#10181D]">
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1B242B] text-xs font-semibold text-[#C9A96A]">
-                            {row.symbol.slice(0, 1)}
-                          </div>
-                          <div>
-                            <div className="font-medium text-[#F5F4EF]">{row.name}</div>
-                            <div className="text-[#A5ABB4]">{row.symbol}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 font-medium text-[#F5F4EF]">{row.price}</td>
-                      <td className="px-6 py-4 text-[#71D99E]">{row.change}</td>
-                      <td className="px-6 py-4 text-[#A5ABB4]">{row.volume}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        <section id="signals" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div>
-              <Badge>Signals</Badge>
-              <h2 className="mt-5 text-4xl tracking-[-0.05em] text-[#F5F4EF]">Actionable insight without the noise.</h2>
-              <p className="mt-6 max-w-lg text-lg leading-8 text-[#A5ABB4]">
-                Structured signal coverage, disciplined pricing, and clean execution context keep every decision transparent and grounded.
-              </p>
-            </div>
-            <div className="rounded-[24px] border border-[#1D242A] bg-[#0F1518] p-6">
-              <div className="grid gap-4 sm:grid-cols-2">
-                {[
-                  { label: "BTC breakout", direction: "Long", entry: "$68,240", tp: "$71,920", sl: "$66,710" },
-                  { label: "ETH trend", direction: "Long", entry: "$3,790", tp: "$4,050", sl: "$3,600" },
-                  { label: "XAU hedge", direction: "Neutral", entry: "$2,420", tp: "$2,460", sl: "$2,390" },
-                  { label: "SOL momentum", direction: "Long", entry: "$161.20", tp: "$176.00", sl: "$152.00" },
-                ].map((signal) => (
-                  <div key={signal.label} className="rounded-2xl border border-[#202932] bg-[#10181D] p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="text-sm font-medium text-[#F5F4EF]">{signal.label}</div>
-                      <span className="rounded-full bg-[#1D2B26] px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-[#71D99E]">{signal.direction}</span>
+            <div className="overflow-hidden rounded-[22px] border border-[#1d242a] bg-[#0b1116]">
+              <div className="flex items-end gap-3 border-b border-[#1d242a] px-4 py-4">
+                {performanceBars.map((bar) => (
+                  <div key={bar.label} className="flex flex-1 flex-col items-center gap-3">
+                    <div className="flex h-24 w-full items-end justify-center rounded-t-xl bg-[linear-gradient(180deg,#1a2730_0%,#d7b77c_100%)] p-1 shadow-inner shadow-black/20" style={{ height: `${bar.value * 1.6}px`, maxHeight: "120px" }}>
+                      <div className="h-full w-full rounded-t-lg bg-[linear-gradient(180deg,rgba(255,255,255,0.15),rgba(0,0,0,0.08))]" />
                     </div>
-                    <div className="mt-5 space-y-2 text-sm text-[#A5ABB4]">
-                      <div className="flex justify-between"><span>Entry</span><span className="text-[#F5F4EF]">{signal.entry}</span></div>
-                      <div className="flex justify-between"><span>TP</span><span className="text-[#F5F4EF]">{signal.tp}</span></div>
-                      <div className="flex justify-between"><span>SL</span><span className="text-[#F5F4EF]">{signal.sl}</span></div>
-                    </div>
+                    <div className="text-[10px] uppercase tracking-[0.2em] text-[#a7afb8]">{bar.label}</div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        </section>
 
-        <section id="security" className="border-t border-[#1B2126] bg-[#0B0D10]">
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-            <div className="grid gap-10 lg:grid-cols-2">
-              <div>
-                <Badge>Security</Badge>
-                <h2 className="mt-5 text-4xl tracking-[-0.05em] text-[#F5F4EF]">Financial-grade controls at every layer.</h2>
-                <p className="mt-6 max-w-lg text-lg leading-8 text-[#A5ABB4]">
-                  We never accept client-side balance truth. Every transaction is validated server-side and recorded in an auditable financial ledger.
-                </p>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {[
-                  "Server-authoritative ledger",
-                  "Audit-ready admin actions",
-                  "Granular permissions",
-                  "Secure session architecture",
-                  "Rate limiting and validation",
-                  "Idempotent financial operations",
-                ].map((item) => (
-                  <div key={item} className="rounded-2xl border border-[#1D242A] bg-[#0F1518] p-4 text-sm text-[#E8E4DE]">
-                    {item}
+          <div className="rounded-[28px] border border-[#1d242a] bg-[#0d1418] p-5">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#9aa4ad]">Live market</div>
+            <div className="mt-4 space-y-3">
+              {marketTicker.map((item) => (
+                <div key={item.symbol} className="flex items-center justify-between rounded-2xl border border-[#1d242a] bg-[#0f171b] px-3 py-3">
+                  <div>
+                    <div className="text-sm font-medium text-[#f5f4ef]">{item.symbol}</div>
+                    <div className="text-xs text-[#a7afb8]">{item.value}</div>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="pricing" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <div className="rounded-[28px] border border-[#1D242A] bg-[linear-gradient(135deg,#11181D,#0E1418)] p-8 md:p-12">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
-                <Badge>Referrals</Badge>
-                <h2 className="mt-5 text-4xl tracking-[-0.05em] text-[#F5F4EF]">Grow with a premium referral engine.</h2>
-              </div>
-              <div className="rounded-full border border-[#2A3137] bg-[#10181D] px-4 py-2 text-sm text-[#D9D7D1]">
-                {formatCompactCurrency(128000)} tracked commission value
-              </div>
-            </div>
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {[
-                { title: "Unique referral links", value: "14.8k" },
-                { title: "Qualified referrals", value: "2,640" },
-                { title: "Commission paid", value: formatCurrency(128000) },
-              ].map((item) => (
-                <div key={item.title} className="rounded-2xl border border-[#1D242A] bg-[#10181D] p-6">
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#A5ABB4]">{item.title}</div>
-                  <div className="mt-4 text-3xl font-medium text-[#F5F4EF]">{item.value}</div>
+                  <div className="text-xs font-medium text-[#71d99e]">{item.delta}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
-      </main>
-    </div>
+
+        <section id="signals" className="mt-8 rounded-[28px] border border-[#1d242a] bg-[#0d1418] p-5 lg:p-6">
+          <div className="mb-6 flex items-center justify-between gap-4">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#9aa4ad]">Signals</div>
+              <h3 className="mt-2 text-3xl font-medium text-[#f5f4ef]">Actionable signal intelligence</h3>
+            </div>
+            <Link href="/signals" className="inline-flex items-center gap-2 rounded-full border border-[#2d3740] bg-[#0f171b] px-4 py-2 text-sm text-[#f5f4ef]">
+              Explore signals <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              { title: "BTC Breakout", direction: "Long", entry: "$68,240", tp: "$71,920", sl: "$66,710" },
+              { title: "ETH Trend", direction: "Long", entry: "$3,790", tp: "$4,050", sl: "$3,600" },
+              { title: "SOL Momentum", direction: "Long", entry: "$161.20", tp: "$176.00", sl: "$152.00" },
+              { title: "XAU Hedge", direction: "Neutral", entry: "$2,420", tp: "$2,460", sl: "$2,390" },
+            ].map((item) => (
+              <article key={item.title} className="rounded-[22px] border border-[#1d242a] bg-[#0f171b] p-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-[#f5f4ef]">{item.title}</span>
+                  <span className="rounded-full bg-[#11231a] px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-[#71d99e]">{item.direction}</span>
+                </div>
+                <div className="mt-5 space-y-2 text-sm text-[#a7afb8]">
+                  <div className="flex justify-between"><span>Entry</span><span className="text-[#f5f4ef]">{item.entry}</span></div>
+                  <div className="flex justify-between"><span>TP</span><span className="text-[#f5f4ef]">{item.tp}</span></div>
+                  <div className="flex justify-between"><span>SL</span><span className="text-[#f5f4ef]">{item.sl}</span></div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="security" className="mt-8 grid gap-6 lg:grid-cols-4">
+          {features.map(({ icon: Icon, title, description }) => (
+            <article key={title} className="rounded-[24px] border border-[#1d242a] bg-[#0d1418] p-5">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#2d3740] bg-[#111a1f] text-[#d7b77c]">
+                <Icon size={18} />
+              </div>
+              <h4 className="mt-5 text-xl font-medium text-[#f5f4ef]">{title}</h4>
+              <p className="mt-3 text-sm leading-7 text-[#a7afb8]">{description}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-10 rounded-[30px] border border-[#1d242a] bg-[linear-gradient(135deg,#0d1418,#111c24)] p-6 md:p-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#9aa4ad]">Start here</div>
+              <h3 className="mt-2 text-3xl font-medium text-[#f5f4ef]">Ready for your next market move?</h3>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link href="/login" className="inline-flex items-center justify-center rounded-full border border-[#2d3740] bg-[#0f171b] px-5 py-3 text-sm font-medium text-[#f5f4ef]">
+                Sign in
+              </Link>
+              <Link href="/register" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d7b77c] px-5 py-3 text-sm font-semibold text-[#11171b]">
+                Create account <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <footer className="mt-8 flex flex-col gap-3 pb-10 pt-3 text-sm text-[#9aa4ad] md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#2d3740] bg-[#101a1f] text-xs font-semibold text-[#d7b77c]">
+              N
+            </div>
+            NEXORA © 2026
+          </div>
+          <div className="flex items-center gap-5">
+            <Link href="/markets">Markets</Link>
+            <Link href="/signals">Signals</Link>
+            <Link href="/login">Login</Link>
+            <Link href="/register">Signup</Link>
+          </div>
+        </footer>
+      </div>
+    </main>
   );
 }
