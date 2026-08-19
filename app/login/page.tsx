@@ -32,9 +32,17 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-8 text-center text-sm text-[#A5ABB4]">
-          Need an account? <Link href="/register" className="text-[#C9A96A]">Create one</Link>
-        </p>
+        <div className="mt-8 space-y-3 text-center text-sm text-[#A5ABB4]">
+          <p>
+            Need an account? <Link href="/register" className="text-[#C9A96A]">Create one</Link>
+          </p>
+          <p>
+            Demo user login: <Link href="/demo-user" className="text-[#C9A96A]">Use test account</Link>
+          </p>
+          <p>
+            Admin login: <Link href="/admin/login" className="text-[#C9A96A]">Open admin</Link>
+          </p>
+        </div>
       </div>
     </main>
   );

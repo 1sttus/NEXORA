@@ -39,9 +39,17 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        <p className="mt-8 text-center text-sm text-[#A5ABB4]">
-          Already have an account? <Link href="/login" className="text-[#C9A96A]">Sign in</Link>
-        </p>
+        <div className="mt-8 space-y-3 text-center text-sm text-[#A5ABB4]">
+          <p>
+            Already have an account? <Link href="/login" className="text-[#C9A96A]">Sign in</Link>
+          </p>
+          <p>
+            Demo user access: <Link href="/demo-user" className="text-[#C9A96A]">Use test account</Link>
+          </p>
+          <p>
+            Admin access: <Link href="/admin/login" className="text-[#C9A96A]">Open admin login</Link>
+          </p>
+        </div>
       </div>
     </main>
   );
