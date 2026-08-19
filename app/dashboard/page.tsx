@@ -1,4 +1,9 @@
-import { ArrowDownLeft, ArrowUpRight, Bell, ChevronRight, CreditCard, Search, ShieldCheck, TrendingUp } from "lucide-react";
+"use client";
+
+import { ArrowDownLeft, Bell, ChevronRight, Search, ShieldCheck, TrendingUp } from "lucide-react";
+
+import { DemoSessionActions } from "@/components/demo-session-actions";
+import { useDemoSession } from "@/hooks/use-demo-session";
 
 const menuItems = [
   { label: "Dashboard", active: true },
@@ -44,6 +49,22 @@ const holdings = [
 ];
 
 export default function DashboardPage() {
+  const { session, status, logout, switchRole } = useDemoSession({ role: "user", loginPath: "/login" });
+
+  if (status === "loading" || !session) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#0b1014] px-6 text-[#f5f4ef]">
+        <div className="w-full max-w-md rounded-[28px] border border-[#1d242a] bg-[#0d1418] p-6 text-center shadow-[0_24px_70px_rgba(0,0,0,0.24)]">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-[#2d3740] bg-[#101a1f] text-lg font-semibold text-[#d7b77c]">
+            N
+          </div>
+          <div className="mt-5 text-2xl font-medium tracking-[-0.05em]">Loading your workspace</div>
+          <p className="mt-3 text-sm text-[#a7afb8]">Checking your demo session and preparing the dashboard shell.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#0b1014] text-[#f5f4ef]">
       <div className="mx-auto flex max-w-[1600px] gap-6 p-4 lg:p-6">
@@ -82,7 +103,7 @@ export default function DashboardPage() {
           <header className="flex flex-col gap-4 border-b border-[#1d242a] pb-5 md:flex-row md:items-center md:justify-between">
             <div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-[#9aa4ad]">Dashboard</div>
-              <h1 className="mt-2 text-3xl font-medium tracking-[-0.05em] text-[#f5f4ef]">Welcome back Yatin Sharma!</h1>
+              <h1 className="mt-2 text-3xl font-medium tracking-[-0.05em] text-[#f5f4ef]">Welcome back {session.name}!</h1>
             </div>
 
             <div className="flex items-center gap-3">
