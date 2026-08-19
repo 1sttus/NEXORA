@@ -1,6 +1,31 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
+
+import { findDemoAccount, writeStoredSession } from "@/lib/auth-demo";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("demo@nexora.io");
+  const [password, setPassword] = useState("Demo@123");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+
+    const account = findDemoAccount(email, password);
+
+    if (!account) {
+      setError("Invalid credentials. Use demo@nexora.io / Demo@123");
+      return;
+    }
+
+    writeStoredSession(account);
+    router.push(account.redirectUrl);
+  };
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#0B0D10] px-6 py-16 text-[#F5F4EF]">
       <div className="w-full max-w-md rounded-[28px] border border-[#1D242A] bg-[#0F1518] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
@@ -12,14 +37,25 @@ export default function LoginPage() {
         <h1 className="text-3xl tracking-[-0.05em]">Welcome back</h1>
         <p className="mt-3 text-sm text-[#A5ABB4]">Access your portfolio, signals, and account security.</p>
 
-        <form className="mt-8 space-y-5">
+        <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
           <div>
             <label className="mb-2 block text-sm text-[#D9D7D1]">Email</label>
-            <input className="w-full rounded-2xl border border-[#2A3137] bg-[#10181D] px-4 py-3 text-[#F5F4EF] outline-none ring-0" placeholder="you@example.com" />
+            <input
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              className="w-full rounded-2xl border border-[#2A3137] bg-[#10181D] px-4 py-3 text-[#F5F4EF] outline-none ring-0"
+              placeholder="you@example.com"
+            />
           </div>
           <div>
             <label className="mb-2 block text-sm text-[#D9D7D1]">Password</label>
-            <input type="password" className="w-full rounded-2xl border border-[#2A3137] bg-[#10181D] px-4 py-3 text-[#F5F4EF] outline-none ring-0" placeholder="Enter your password" />
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              className="w-full rounded-2xl border border-[#2A3137] bg-[#10181D] px-4 py-3 text-[#F5F4EF] outline-none ring-0"
+              placeholder="Enter your password"
+            />
           </div>
 
           <div className="flex items-center justify-between text-sm text-[#A5ABB4]">
@@ -27,7 +63,9 @@ export default function LoginPage() {
             <Link href="/forgot-password" className="text-[#C9A96A]">Forgot password?</Link>
           </div>
 
-          <button className="w-full rounded-full bg-[#C9A96A] px-4 py-3 text-sm font-medium text-[#11161B] transition hover:bg-[#d9b982]">
+          {error ? <div className="rounded-xl border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-200">{error}</div> : null}
+
+          <button type="submit" className="w-full rounded-full bg-[#C9A96A] px-4 py-3 text-sm font-medium text-[#11161B] transition hover:bg-[#d9b982]">
             Sign in
           </button>
         </form>
