@@ -12,7 +12,7 @@
 - [ ] Implement market-data provider abstraction and data UI
 - [ ] Implement referral and signal flows
 - [ ] Create admin operations and audit controls
-- [ ] Add tests, security validation, and production configuration
+- [x] Add tests, security validation, and production configuration
 
 ## P1 — High
 - [ ] Add transaction, deposit, and withdrawal workflows with ledger enforcement
@@ -27,6 +27,6 @@
 - [ ] Add seeded demo data and admin setup flows
 
 ## P3 — Nice to Have
-- [ ] Add advanced SEO metadata, canonical setup, and rich snippets
+- [x] Add advanced SEO metadata, canonical setup, and rich snippets
 - [ ] Add optional video and media polish
 - [ ] Build deeper analytics export and admin reporting features
