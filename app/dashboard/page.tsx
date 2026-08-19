@@ -114,9 +114,7 @@ export default function DashboardPage() {
               <button className="flex h-11 w-11 items-center justify-center rounded-full border border-[#2d3740] bg-[#101a1f] text-[#d9d7d1]">
                 <Bell size={16} />
               </button>
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d7b77c] font-semibold text-[#11171b]">
-                Y
-              </div>
+              <DemoSessionActions session={session} variant="dark" onLogout={() => logout("/login")} onSwitchRole={switchRole} />
             </div>
           </header>
 

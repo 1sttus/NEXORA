@@ -1,4 +1,9 @@
-import { Activity, Bell, CreditCard, DollarSign, Search, ShieldCheck, TrendingUp, Users } from "lucide-react";
+"use client";
+
+import { Activity, Bell, DollarSign, Search, ShieldCheck, Users } from "lucide-react";
+
+import { DemoSessionActions } from "@/components/demo-session-actions";
+import { useDemoSession } from "@/hooks/use-demo-session";
 
 const sidebar = [
   "Overview",
@@ -34,6 +39,22 @@ const recentEvents = [
 ];
 
 export default function AdminDashboardPage() {
+  const { session, status, logout, switchRole } = useDemoSession({ role: "admin", loginPath: "/admin/login" });
+
+  if (status === "loading" || !session) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[var(--bg)] px-6 text-[var(--text)]">
+        <div className="w-full max-w-md rounded-[30px] border border-[var(--line)] bg-[var(--panel)] p-6 text-center shadow-[0_20px_80px_rgba(0,0,0,0.18)]">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--line)] bg-[var(--card)] text-lg font-semibold text-[var(--gold)]">
+            N
+          </div>
+          <div className="mt-5 text-2xl font-medium tracking-[-0.06em]">Loading admin workspace</div>
+          <p className="mt-3 text-sm text-[var(--muted)]">Verifying the admin session and restoring control center access.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <div className="mx-auto flex max-w-[1600px] gap-6 p-4 lg:p-6">
