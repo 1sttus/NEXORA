@@ -1,15 +1,15 @@
 import { ArrowUpRight, Filter, Search } from "lucide-react";
 
-const marketRows = [
-  { name: "Bitcoin", symbol: "BTC", price: "$68,420.12", change: "+2.84%", volume: "$31.2T", marketCap: "$1.34T" },
-  { name: "Ethereum", symbol: "ETH", price: "$3,810.56", change: "+1.67%", volume: "$18.6T", marketCap: "$458.9B" },
-  { name: "Solana", symbol: "SOL", price: "$164.90", change: "+4.12%", volume: "$7.4T", marketCap: "$77.3B" },
-  { name: "XRP", symbol: "XRP", price: "$0.62", change: "+1.20%", volume: "$2.7T", marketCap: "$34.1B" },
-  { name: "Dogecoin", symbol: "DOGE", price: "$0.18", change: "+2.05%", volume: "$1.3T", marketCap: "$25.7B" },
-  { name: "EUR/USD", symbol: "EURUSD", price: "1.0912", change: "+0.18%", volume: "—", marketCap: "—" },
-  { name: "Gold", symbol: "XAU", price: "$2,426.70", change: "+0.74%", volume: "—", marketCap: "—" },
-  { name: "S&P 500", symbol: "SPX", price: "5,482.13", change: "+0.63%", volume: "—", marketCap: "—" },
-];
+import { marketSnapshots } from "@/lib/market-data";
+
+const marketRows = marketSnapshots.map((snapshot) => ({
+  name: snapshot.name,
+  symbol: snapshot.symbol,
+  price: snapshot.priceLabel,
+  change: `${snapshot.changePercent >= 0 ? "+" : ""}${snapshot.changePercent.toFixed(2)}%`,
+  volume: snapshot.volume,
+  marketCap: snapshot.symbol === "BTC" ? "$1.34T" : snapshot.symbol === "ETH" ? "$458.9B" : snapshot.symbol === "SOL" ? "$77.3B" : snapshot.symbol === "XRP" ? "$34.1B" : snapshot.symbol === "DOGE" ? "$25.7B" : "—",
+}));
 
 const movers = [
   { label: "Positive movers", items: ["BTC", "SOL", "XAU"] },
