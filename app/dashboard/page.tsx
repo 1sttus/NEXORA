@@ -95,7 +95,7 @@ export default function DashboardPage() {
           <div className="mt-auto rounded-[24px] border border-[#1d242a] bg-[#101a1f] p-4">
             <div className="text-[10px] uppercase tracking-[0.2em] text-[#9aa4ad]">Template</div>
             <div className="mt-3 text-lg font-medium text-[#f5f4ef]">Jiade Crypto Trading UI</div>
-            <div className="mt-2 text-sm text-[#b7bec6]">© 2026 All rights reserved</div>
+            <div className="mt-2 text-sm text-[#b7bec6]">Copyright 2026</div>
           </div>
         </aside>
 

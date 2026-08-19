@@ -76,7 +76,7 @@ export default function AdminDashboardPage() {
                 }`}
               >
                 <span>{item}</span>
-                {index === 0 && <span className="text-[var(--gold)]">•</span>}
+                {index === 0 && <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--gold)]" />}
               </button>
             ))}
           </nav>
@@ -103,7 +103,7 @@ export default function AdminDashboardPage() {
               <button className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--card)] text-[var(--text)]">
                 <Bell size={16} />
               </button>
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--gold)] font-semibold text-[#14181b]">A</div>
+              <DemoSessionActions session={session} variant="panel" onLogout={() => logout("/admin/login")} onSwitchRole={switchRole} />
             </div>
           </header>
 
