@@ -1,13 +1,13 @@
 # NEXORA TODO
 
 ## P0 — Critical
-- [ ] Initialize Next.js project and core tooling
-- [ ] Configure TypeScript, Tailwind, ESLint, Prettier, and environment management
-- [ ] Establish domain-based project structure and architecture docs
-- [ ] Create design tokens and base UI system
-- [ ] Implement public landing pages and marketing experience
-- [ ] Implement authentication flows and protected routes
-- [ ] Implement core dashboard shell and key screens
+- [x] Initialize Next.js project and core tooling
+- [x] Configure TypeScript, Tailwind, ESLint, Prettier, and environment management
+- [x] Establish domain-based project structure and architecture docs
+- [x] Create design tokens and base UI system
+- [x] Implement public landing pages and marketing experience
+- [x] Implement authentication flows and protected routes
+- [x] Implement core dashboard shell and key screens
 - [ ] Implement database schema and financial ledger patterns
 - [ ] Implement market-data provider abstraction and data UI
 - [ ] Implement referral and signal flows
