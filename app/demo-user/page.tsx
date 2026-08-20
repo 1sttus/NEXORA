@@ -90,7 +90,7 @@ export default function DemoUserLoginPage() {
               />
             </div>
 
-            {error ? <div className="rounded-xl border border-red-500/20 bg-red-500/8 px-3 py-2 text-sm text-red-700">{error}</div> : null}
+            {error ? <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-3 py-2 text-sm text-red-700">{error}</div> : null}
 
             <button
               type="submit"
