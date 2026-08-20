@@ -1,39 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0b0f14;
-  --panel: #0d1418;
-  --card: #101a1f;
-  --soft: #121d23;
-  --line: #1d242b;
-  --text: #f4f1ea;
-  --text-soft: #c8ced5;
-  --muted: #9aa4ad;
-  --gold: #d7b77c;
-  --gold-strong: #caa762;
-  --cyan: #6ed8e6;
-  --success: #72d9a0;
-  --warning: #f2b65a;
-  --shadow: rgba(3, 7, 10, 0.38);
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #edf1f4;
-    --panel: #f8f9fa;
-    --card: #ffffff;
-    --soft: #eef3f5;
-    --line: #dfe6eb;
-    --text: #111827;
-    --text-soft: #334155;
-    --muted: #64748b;
-    --gold: #c79d5d;
-    --gold-strong: #b88846;
-    --cyan: #1ca7b8;
-    --success: #1ea672;
-    --warning: #d88e18;
-    --shadow: rgba(15, 23, 42, 0.08);
-  }
+  color-scheme: light;
+  --bg: #f5f3ee;
+  --panel: #ffffff;
+  --card: #fcfbf8;
+  --soft: #f2ece2;
+  --line: #e7dfd2;
+  --text: #111827;
+  --text-soft: #374151;
+  --muted: #6b7280;
+  --gold: #9c7a3d;
+  --gold-strong: #7d5f2e;
+  --cyan: #50839a;
+  --success: #15803d;
+  --warning: #a16207;
+  --shadow: rgba(15, 23, 42, 0.08);
 }
 
 @theme inline {
@@ -45,14 +27,18 @@
 
 html {
   scroll-behavior: smooth;
+  min-height: 100%;
 }
 
 body {
-  background: var(--bg);
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top, rgba(156, 122, 61, 0.08), transparent 28%),
+    linear-gradient(180deg, #faf8f4 0%, #f5f3ee 52%, #f3eee6 100%);
   color: var(--text);
   font-family: var(--font-geist-sans), Arial, sans-serif;
   line-height: 1.5;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 * {
@@ -75,4 +61,10 @@ html, body {
 button,
 input {
   font: inherit;
+}
+
+input,
+textarea,
+select {
+  background: transparent;
 }

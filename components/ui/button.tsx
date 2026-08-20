@@ -11,7 +11,7 @@ export function Button({
   className?: string;
 }) {
   const classes = cn(
-    "inline-flex items-center justify-center rounded-full bg-[#C9A96A] px-5 py-3 text-sm font-medium text-[#11161B] transition hover:bg-[#d9b982]",
+    "inline-flex items-center justify-center rounded-full border border-[var(--line)] bg-[var(--text)] px-5 py-3 text-sm font-medium text-[var(--bg)] transition hover:bg-[#1f2937]",
     className,
   );
 
