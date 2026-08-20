@@ -1,56 +1,36 @@
 import Link from "next/link";
 
-const footerLinks = {
-  Company: [
-    { label: "About", href: "/about" },
-    { label: "How it works", href: "/how-it-works" },
-    { label: "Contact", href: "/contact" },
-  ],
-  Platform: [
-    { label: "Markets", href: "/markets" },
-    { label: "Signals", href: "/signals" },
-    { label: "Dashboard", href: "/dashboard" },
-  ],
-  Legal: [
-    { label: "Terms", href: "/terms" },
-    { label: "Privacy", href: "/privacy" },
-    { label: "Risk disclosure", href: "/risk" },
-  ],
-};
+const nav = ["Home", "What is ico", "Product", "Token", "Road Map", "Team", "Contact Us"];
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--line)] bg-[transparent]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
-        <div>
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--panel)] text-sm font-semibold text-[var(--gold)]">
-              N
-            </div>
-            <div>
-              <div className="text-[10px] uppercase tracking-[0.32em] text-[var(--muted)]">NEXORA</div>
-              <div className="text-xs text-[var(--text-soft)]">Precision without noise</div>
-            </div>
+    <footer className="border-t border-white/10 bg-[#020b18] text-white">
+      <div className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
+        <div className="flex flex-col gap-5 border-b border-white/10 pb-5 md:flex-row md:items-center md:justify-between">
+          <div className="text-4xl font-black tracking-[-0.08em] text-white sm:text-5xl md:text-6xl">
+            NEXORA
           </div>
-          <p className="mt-5 max-w-sm text-sm leading-7 text-[var(--text-soft)]">
-            Clarity for every market move. NEXORA helps users monitor portfolio performance and market intelligence with discipline and transparency.
-          </p>
+
+          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-white/70 md:gap-8">
+            {nav.map((item) => (
+              <Link key={item} href="/" className="transition hover:text-[#f9c74f]">
+                {item}
+              </Link>
+            ))}
+            <Link href="/login" className="rounded-full bg-[#f9c74f] px-5 py-2.5 text-sm font-semibold text-[#0a1527] transition hover:opacity-90">
+              Login
+            </Link>
+          </nav>
         </div>
 
-        {Object.entries(footerLinks).map(([heading, links]) => (
-          <div key={heading}>
-            <h3 className="text-[10px] uppercase tracking-[0.24em] text-[var(--muted)]">{heading}</h3>
-            <ul className="mt-5 space-y-3 text-sm text-[var(--text-soft)]">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="transition hover:text-[var(--text)]">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        <div className="mt-6 flex flex-col gap-4 text-sm text-white/60 md:flex-row md:items-center md:justify-between">
+          <p>© 2026 NEXORA. All rights reserved.</p>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/about" className="transition hover:text-white">About</Link>
+            <Link href="/faq" className="transition hover:text-white">FAQ</Link>
+            <Link href="/contact" className="transition hover:text-white">Contact</Link>
           </div>
-        ))}
+        </div>
       </div>
     </footer>
   );
