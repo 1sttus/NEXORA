@@ -21,7 +21,7 @@ const marketRows = marketSnapshots.map((snapshot) => ({
             ? "$34.1B"
             : snapshot.symbol === "DOGE"
               ? "$25.7B"
-              : "—",
+              : "N/A",
 }));
 
 const movers = [
