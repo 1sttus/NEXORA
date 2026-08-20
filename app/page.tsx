@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
@@ -94,7 +95,7 @@ function MinimalCard({
   delay = 0,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   delay?: number;
 }) {
   return (
