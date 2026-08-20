@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, Bell, ChevronRight, ShieldCheck, Sparkles, TrendingUp, Wallet2 } from "lucide-react";
-
-import { formatCompactCurrency, formatCurrency } from "@/lib/finance";
+import { ArrowRight, BarChart3, ChevronRight, ShieldCheck, Sparkles, TrendingUp, Wallet2 } from "lucide-react";
 
 const marketTicker = [
   { symbol: "BTC/USD", value: "$68,420.12", delta: "+2.84%" },
